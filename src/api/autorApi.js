@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://microservicioautor.onrender.com//api/autor', // Asegúrate que esta URL sea accesible desde el frontend
+  baseURL: 'https://microservicioautor.onrender.com/api/autor', // Asegúrate que esta URL sea accesible desde el frontend
   headers: {
     'Content-Type': 'application/json',
   },
