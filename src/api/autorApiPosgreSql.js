@@ -2,15 +2,14 @@
 import axios from 'axios';
 
 const api = axios.create({
-  //baseURL: 'https://microservicioautor.onrender.com/api/autor', // Asegúrate que esta URL sea accesible desde el frontend
-  baseURL: 'https://localhost:32779/api/autor',
+  baseURL: 'http://microservicioautorlibro.somee.com/api/autor', // Asegúrate que esta URL sea accesible desde el frontend
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
 // Obtener todos los autores
-export const getAutores = async () => {
+export const getAutoresPostgre = async () => {
   try {
     const response = await api.get('/');
     return response.data;
@@ -21,7 +20,7 @@ export const getAutores = async () => {
 };
 
 // Obtener autor por ID
-export const getAutorById = async (id) => {
+export const getAutorByIdPostgre = async (id) => {
   try {
     const response = await api.get(`/${id}`);
     return response.data;
@@ -32,7 +31,7 @@ export const getAutorById = async (id) => {
 };
 
 // Crear un nuevo autor
-export const createAutor = async (autorData) => {
+export const createAutorPostgre = async (autorData) => {
   try {
     const response = await api.post('/', {
       Nombre: autorData.nombre,
@@ -48,7 +47,7 @@ export const createAutor = async (autorData) => {
 };
 
 
-export const updateAutor = async (id, autorData) => {
+export const updateAutorPostgre = async (id, autorData) => {
   const response = await api.put(`/${id}`, {
     Nombre: autorData.nombre,
     Apellido: autorData.apellido,
@@ -57,13 +56,13 @@ export const updateAutor = async (id, autorData) => {
   return response.data;
 };
 
-export const deleteAutor = async (id) => {
+export const deleteAutorPostgre = async (id) => {
   const response = await api.delete(`/${id}`);
   return response.data;
 };
 
 // Buscar autores por nombre (parcial)
-export const searchAutoresByNombre = async (nombre) => {
+export const searchAutoresByNombrePostgre = async (nombre) => {
   try {
     const response = await api.get(`/buscar?nombre=${encodeURIComponent(nombre)}`);
     return response.data;

@@ -1,18 +1,14 @@
 import axios from 'axios';
 
 const api = axios.create({
-  //baseURL: 'https://microserviciolibro.onrender.com/api/LibroMaterial', //configurado con un loud balancer por eso puerto 8080
-  baseURL: 'https://localhost:32781/api/LibroMaterial',
-
-  //http://localhost:8080/api/LibroMaterial/instancia
-  
+  baseURL: 'https://localhost:32783/api/LibroMaterial', //configurado con un loud balancer por eso puerto 8080
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
 // Obtener todos los libros
-export const getLibros = async () => {
+export const getLibrosMySql = async () => {
   try {
     const response = await api.get('/');
     return response.data;
@@ -23,7 +19,7 @@ export const getLibros = async () => {
 };
 
 // Obtener un libro por ID
-export const getLibroById = async (id) => {
+export const getLibroByIdMySql = async (id) => {
   try {
     const response = await api.get(`/${id}`);
     return response.data;
@@ -34,7 +30,7 @@ export const getLibroById = async (id) => {
 };
 
 // Crear un nuevo libro
-export const createLibro = async (libroData) => {
+export const createLibroMySql = async (libroData) => {
   try {
     const response = await api.post('/', {
       Titulo: libroData.titulo,
@@ -56,7 +52,7 @@ export const createLibro = async (libroData) => {
 };
 
 // Actualizar un libro
-export const updateLibro = async (id, libroData) => {
+export const updateLibroMySql = async (id, libroData) => {
   try {
     const response = await api.put(`/${id}`, {
       Titulo: libroData.titulo,
@@ -72,7 +68,7 @@ export const updateLibro = async (id, libroData) => {
 };
 
 // Eliminar un libro
-export const deleteLibro = async (id) => {
+export const deleteLibroMySql = async (id) => {
   try {
     const response = await api.delete(`/${id}`);
     return response.data;
