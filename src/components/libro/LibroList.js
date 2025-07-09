@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getLibros } from '../api/libroApi';
+import { getLibros } from '../../api/libroApi';
 import { Link } from 'react-router-dom';
 
 const LibroList = () => {

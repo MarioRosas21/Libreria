@@ -1,6 +1,6 @@
 // src/components/AsignarAutorModal.js
 import React, { useState, useEffect } from 'react';
-import { getAutores } from '../api/autorApi';
+import { getAutores } from '../../api/autorApi';
 
 function AsignarAutorModal({ libroId, onAsignar, onClose }) {
   const [autores, setAutores] = useState([]);

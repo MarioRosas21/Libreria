@@ -1,6 +1,6 @@
 // src/components/AutorList.js
 import React, { useEffect, useState } from 'react';
-import { getAutores } from '../api/autorApi';
+import { getAutores } from '../../api/autorApi';
 
 const AutorList = () => {
   const [autores, setAutores] = useState([]);

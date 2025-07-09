@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { getAutorById } from '../api/autorApi';
+import { getAutorById } from '../../api/autorApi';
 
 const AutorDetail = () => {
   const { id } = useParams();

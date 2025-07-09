@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { getLibroById } from '../api/libroApi';
+import { getLibroById } from '../../api/libroApi';
 
 const LibroDetail = () => {
   const { id } = useParams();

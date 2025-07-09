@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
-import { createLibro } from '../api/libroApi';
+import { createAutor } from '../../api/autorApi';
 import { useNavigate } from 'react-router-dom';
 
-const LibroForm = () => {
+const AutorForm = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    titulo: '',
-    fechaPublicacion: '',
-    autorLibro: '',
-    newData: 0
+    nombre: '',
+    apellido: '',
+    fechaNacimiento: ''
   });
 
   const handleChange = (e) => {
@@ -22,51 +21,43 @@ const LibroForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await createLibro(formData);
-      navigate('/libros');
+      await createAutor(formData);
+      navigate('/autores');
     } catch (error) {
-      console.error('Error al crear libro:', error);
+      console.error('Error al crear autor:', error);
     }
   };
 
   return (
     <div>
-      <h2>Nuevo Libro</h2>
+      <h2>Nuevo Autor</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Título:</label>
+          <label>Nombre:</label>
           <input
             type="text"
-            name="titulo"
-            value={formData.titulo}
+            name="nombre"
+            value={formData.nombre}
             onChange={handleChange}
             required
           />
         </div>
         <div>
-          <label>Fecha de Publicación:</label>
-          <input
-            type="date"
-            name="fechaPublicacion"
-            value={formData.fechaPublicacion}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>ID Autor:</label>
+          <label>Apellido:</label>
           <input
             type="text"
-            name="autorLibro"
-            value={formData.autorLibro}
+            name="apellido"
+            value={formData.apellido}
             onChange={handleChange}
+            required
           />
         </div>
         <div>
-          <label>New Data:</label>
+          <label>Fecha de Nacimiento:</label>
           <input
-            type="number"
-            name="newData"
-            value={formData.newData}
+            type="date"
+            name="fechaNacimiento"
+            value={formData.fechaNacimiento}
             onChange={handleChange}
           />
         </div>
@@ -76,4 +67,4 @@ const LibroForm = () => {
   );
 };
 
-export default LibroForm;
+export default AutorForm;

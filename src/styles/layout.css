@@ -1,0 +1,53 @@
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #f5f7fa, #e4e8eb);
+}
+
+.app-header {
+  background: linear-gradient(to right, var(--dark-color), var(--secondary-color));
+  color: white;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--box-shadow);
+}
+
+.library-logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navigation-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.tab-button {
+  flex: 1;
+  padding: 1rem;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  color: #666;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.tab-button.active {
+  color: var(--primary-color);
+  border-bottom-color: var(--primary-color);
+}
+
+.app-footer {
+  background-color: var(--dark-color);
+  color: white;
+  padding: 1.5rem;
+  text-align: center;
+}

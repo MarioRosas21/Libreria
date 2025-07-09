@@ -752,3 +752,28 @@ body {
   border-color: var(--primary-color);
   box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.2);
 }
+
+.auth-container {
+  margin: auto;
+  padding: 2rem;
+  max-width: 400px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+.auth-container input {
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.7rem;
+}
+.auth-container button {
+  width: 100%;
+  padding: 0.7rem;
+  background-color: #4a6fa5;
+  color: white;
+  border: none;
+}
+.auth-container span {
+  color: #4a6fa5;
+  cursor: pointer;
+  font-weight: bold;
+}

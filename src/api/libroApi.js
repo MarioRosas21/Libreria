@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const api = axios.create({
   //baseURL: 'https://microserviciolibro.onrender.com/api/LibroMaterial', //configurado con un loud balancer por eso puerto 8080
-  baseURL: 'https://localhost:32781/api/LibroMaterial',
+  baseURL: 'https://localhost:32771/api/LibroMaterial',
 
   //http://localhost:8080/api/LibroMaterial/instancia
   
