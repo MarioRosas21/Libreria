@@ -10,7 +10,7 @@ import './styles/form.css';
 import './styles/estado.css';
 
 // Componentes de gestión
-//import LibroManager from './components/libro/LibroManager';
+import LibroManager from './components/libro/LibroManager';
 import AutorManager from './components/autor/AutorManager';
 
 // Componentes de autenticación
@@ -23,7 +23,7 @@ function App() {
   const [user, setUser] = useState(null); // Usuario logueado
   const [authView, setAuthView] = useState('login'); // login | register | recover
 
-  // Si no hay sesión, mostrar vistas de login/registro/recuperación
+  //Si no hay sesión, mostrar vistas de login/registro/recuperación
   if (!user) {
     return (
       <div className="auth-container">
@@ -46,17 +46,21 @@ function App() {
           </div>
           <h1 className='titulo-blanco'>Biblioteca Digital</h1>
         </div>
-        <button className="logout-button" onClick={() => setUser(null)}>Cerrar sesión</button>
-      </header>
+<button className="logout-button" onClick={() => {
+  localStorage.removeItem('token');
+  setUser(null);
+}}>
+  Cerrar sesión
+</button>      </header>
 
       <nav className="navigation-tabs">
-        {/* <button className={`tab-button ${activeTab === 'list' ? 'active' : ''}`} onClick={() => setActiveTab('list')}>
+         <button className={`tab-button ${activeTab === 'list' ? 'active' : ''}`} onClick={() => setActiveTab('list')}>
           📚 Libros
         </button>
 
         <button className={`tab-button ${activeTab === 'add' ? 'active' : ''}`} onClick={() => setActiveTab('add')}>
           ✍️ Añadir Libro
-        </button> */}
+        </button> 
 
         <button className={`tab-button ${activeTab === 'autores' ? 'active' : ''}`} onClick={() => setActiveTab('autores')}>
           👤 Autores
@@ -68,9 +72,9 @@ function App() {
       </nav>
 
       <main className="main-content">
-        {/* {['list', 'librosMySql', 'add', 'edit'].includes(activeTab) && (
+        {['list', 'libros', 'add', 'edit'].includes(activeTab) && (
           <LibroManager activeTab={activeTab} setActiveTab={setActiveTab} />
-        )} */}
+        )}
 
         {['autores', 'autoresPostgre', 'addAutor'].includes(activeTab) && (
           <AutorManager activeTab={activeTab} setActiveTab={setActiveTab} />

@@ -11,8 +11,10 @@ export default function LoginForm({ onLoginSuccess, setAuthView }) {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const { token } = await loginUser({ email, password });
-      localStorage.setItem('token', token);
+      const response = await loginUser({ email, password });
+      localStorage.setItem('token', response.token);
+      localStorage.setItem('refreshToken', response.refreshToken);
+
       onLoginSuccess(); // Actualiza el estado del usuario en App.js
     } catch (err) {
       setError(err.response?.data?.message || 'Error al iniciar sesión');

@@ -2,10 +2,64 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://microservicioautorlibro.somee.com/api/autor', // Asegúrate que esta URL sea accesible desde el frontend
+  //baseURL: 'https://microservicioautorlibro.somee.com/api/autor', // Asegúrate que esta URL sea accesible desde el frontend
+  baseURL: 'https://microservicioautor.somee.com/api/autor',
   headers: {
     'Content-Type': 'application/json',
   },
+});
+
+// Interceptor para manejar expiración del token
+api.interceptors.response.use(
+  response => response,
+  async error => {
+    const originalRequest = error.config;
+
+    // Si el token expiró y no hemos reintentado ya
+    if (error.response?.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
+
+      const refreshToken = localStorage.getItem('refreshToken');
+
+      if (!refreshToken) {
+        console.warn("No hay refresh token, redirigiendo al login");
+        window.location.reload(); // O redirige a login
+        return Promise.reject(error);
+      }
+
+      try {
+        const response = await axios.post('https://microserviciologin.onrender.com/api/auth/refresh', {
+          refreshToken,
+        });
+
+        const newToken = response.data.token;
+        localStorage.setItem('token', newToken);
+
+        // Actualizar token en la cabecera y reintentar original request
+        originalRequest.headers['Authorization'] = 'Bearer ' + newToken;
+        return api(originalRequest);
+
+      } catch (refreshError) {
+        console.error("Fallo al refrescar token:", refreshError);
+        localStorage.removeItem('token');
+        localStorage.removeItem('refreshToken');
+        window.location.reload(); // Cierra sesión si falla el refresh
+      }
+    }
+
+    return Promise.reject(error);
+  }
+);
+
+// Interceptor para agregar el token antes de cada petición
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem('token'); // recupera el token del localStorage
+  if (token) {
+    config.headers['Authorization'] = `Bearer ${token}`;
+  }
+  return config;
+}, (error) => {
+  return Promise.reject(error);
 });
 
 // Obtener todos los autores
