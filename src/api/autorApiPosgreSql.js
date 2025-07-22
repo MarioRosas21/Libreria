@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const api = axios.create({
   //baseURL: 'https://microservicioautorlibro.somee.com/api/autor', // Asegúrate que esta URL sea accesible desde el frontend
-  baseURL: 'https://microservicioautor.somee.com/api/autor',
+  baseURL: 'https://microservicioautorposgre.onrender.com/api/autor',
   headers: {
     'Content-Type': 'application/json',
   },
